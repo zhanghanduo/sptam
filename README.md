@@ -5,6 +5,10 @@ S-PTAM is a Stereo SLAM system able to compute the camera trajectory in real-tim
 alt="IMAGE ALT TEXT HERE" width="560" height="315" border="0" /></a>  
 (Click the image to redirect to S-PTAM video)
 
+## Modification
+Grid based Motion statistics for dynamic objects during pose estimation
+
+
 ## Related Publications:
 [1]  Taihú Pire,Thomas Fischer, Gastón Castro, Pablo De Cristóforis, Javier Civera and Julio Jacobo Berlles.
 **S-PTAM: Stereo Parallel Tracking and Mapping**

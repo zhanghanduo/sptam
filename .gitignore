@@ -88,4 +88,7 @@ __pycache__/
 *$py.class
 
 build/
+.idea/
+.vscode/
+cmake-build-debug/
 
