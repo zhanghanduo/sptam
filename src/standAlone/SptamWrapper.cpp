@@ -133,7 +133,7 @@ void SptamWrapper::Add(const size_t frame_id, const ros::Time& time, std::unique
     #ifdef SHOW_TRACKED_FRAMES
     cv::imshow("Before Refine", tracker_view.stereoFrameBeforeRefine);
     cv::imshow("After Refine", tracker_view.stereoFrameAfterRefine);
-    cv::waitKey( 1 );
+    cv::waitKey( 0 );
     #endif
   } // else
 

@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
+    <generated>
+      <config projectName="sptam" targetName="test_CovisibilityGraph" />
+      <config projectName="sptam" targetName="test_set_union" />
+      <config projectName="sptam" targetName="sptam" />
+      <config projectName="sptam" targetName="frameGenerator" />
+      <config projectName="sptam" targetName="sptam-stereo" />
+    </generated>
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="0982740e-ddfd-4f0a-8d89-e8df3bd12c43" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sptam.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CTestTestfile.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/sptam.cbp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/src/standAlone/CTestTestfile.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/src/standAlone/sptam-stereo" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/src/tests/CTestTestfile.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/src/tests/sptam/CTestTestfile.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/src/tests/sptam/CovisibilityGraph/CTestTestfile.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/src/tests/sptam/utils/CTestTestfile.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/src/tests/sptam/utils/set_union/CTestTestfile.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-modules/dependencies.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-modules/dependencies.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurationFiles/kitti.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/configurationFiles/kitti.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sptam/sptam.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/sptam/sptam.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/standAlone/SptamWrapper.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/standAlone/SptamWrapper.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/standAlone/Timestamps.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/standAlone/Timestamps.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/standAlone/sptam-stereo.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/standAlone/sptam-stereo.cpp" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="FavoritesManager">
+    <favorites_list name="sptam" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/standAlone/sptam-stereo.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="81">
+              <caret line="397" column="22" selection-start-line="397" selection-start-column="22" selection-end-line="397" selection-end-column="22" />
+              <folding>
+                <element signature="e#1482#1518#0" expanded="true" />
+                <element signature="e#2184#2213#0" expanded="true" />
+                <element signature="e#3337#3407#0" expanded="true" />
+                <element signature="e#3465#3574#0" expanded="true" />
+                <element signature="e#6023#6074#0" expanded="true" />
+                <element signature="e#7793#8757#0" expanded="true" />
+                <element signature="e#12327#12370#0" expanded="true" />
+                <element signature="e#15071#15135#0" expanded="true" />
+                <element signature="e#15365#15440#0" expanded="true" />
+                <element signature="e#16901#16925#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/standAlone/SptamWrapper.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="604">
+              <caret line="133" column="68" selection-start-line="133" selection-start-column="45" selection-end-line="133" selection-end-column="68" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/sptam/TrackerViewStereo.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="301">
+              <caret line="66" column="4" selection-start-line="66" selection-start-column="4" selection-end-line="66" selection-end-column="4" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/sptam/sptam.hpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="561">
+              <caret line="93" column="31" selection-start-line="93" selection-start-column="31" selection-end-line="93" selection-end-column="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/standAlone/Timestamps.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="474">
+              <caret line="120" column="66" selection-start-line="120" selection-start-column="66" selection-end-line="120" selection-end-column="66" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/configurationFiles/kitti.yaml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="104">
+              <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>test</find>
+      <find>gets</find>
+      <find>gtest</find>
+      <find>tracking is slower than the camera feed</find>
+      <find>pause</find>
+      <find>build</find>
+      <find>SHOW_TRACKED_FRAMES</find>
+      <find>pointcloud</find>
+      <find>SHOW_POINT_CLOUD</find>
+      <find>imshow</find>
+      <find>stereoFrameBeforeRefine</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/standAlone/FrameGenerator/ListOfFilesFrameGenerator.cpp" />
+        <option value="$PROJECT_DIR$/configurationFiles/kitti.yaml" />
+        <option value="$PROJECT_DIR$/src/sptam/sptam.hpp" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/src/standAlone/sptam-stereo.cpp" />
+        <option value="$PROJECT_DIR$/src/standAlone/SptamWrapper.cpp" />
+        <option value="$PROJECT_DIR$/src/standAlone/Timestamps.cpp" />
+        <option value="$PROJECT_DIR$/cmake-modules/options.cmake" />
+      </list>
+    </option>
+  </component>
+  <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="366" />
+    <option name="y" value="204" />
+    <option name="width" value="1001" />
+    <option name="height" value="1076" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="sptam" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sptam" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sptam" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sptam" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.sptam-stereo">
+    <configuration name="frameGenerator" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="sptam" TARGET_NAME="frameGenerator" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="sptam-stereo" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="sptam" TARGET_NAME="sptam-stereo" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="sptam" RUN_TARGET_NAME="sptam-stereo">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="sptam" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="sptam" TARGET_NAME="sptam" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="test_CovisibilityGraph" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="sptam" TARGET_NAME="test_CovisibilityGraph" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="sptam" RUN_TARGET_NAME="test_CovisibilityGraph">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="test_set_union" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="sptam" TARGET_NAME="test_set_union" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="sptam" RUN_TARGET_NAME="test_set_union">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.sptam" />
+      <item itemvalue="Application.frameGenerator" />
+      <item itemvalue="Application.sptam-stereo" />
+      <item itemvalue="Application.test_CovisibilityGraph" />
+      <item itemvalue="Application.test_set_union" />
+    </list>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0982740e-ddfd-4f0a-8d89-e8df3bd12c43" name="Default Changelist" comment="" />
+      <created>1546681755532</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1546681755532</updated>
+      <workItem from="1546681756685" duration="1750000" />
+      <workItem from="1546685289744" duration="5994000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="7744000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4994698" visible="true" weight="0.17689331" />
+      <window_info id="Structure" order="1" sideWeight="0.50053024" side_tool="true" visible="true" weight="0.17689331" />
+      <window_info id="Favorites" order="2" sideWeight="0.50053024" side_tool="true" weight="0.17689331" />
+      <window_info anchor="bottom" id="Messages" weight="0.32979852" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32979852" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Database Changes" order="7" />
+      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="10" />
+      <window_info anchor="bottom" id="CMake" order="11" weight="0.32979852" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Database" order="3" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/tests/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="78">
+          <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/standAlone/FrameGenerator/ListOfFilesFrameGenerator.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="40" column="40" lean-forward="true" selection-start-line="40" selection-start-column="40" selection-end-line="40" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sptam/MapMaker.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="509">
+          <caret line="295" column="97" selection-start-line="295" selection-start-column="97" selection-end-line="295" selection-end-column="97" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cmake-modules/dependencies.cmake">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="655">
+          <caret line="63" column="28" selection-start-line="63" selection-start-column="28" selection-end-line="63" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="21" column="19" selection-start-line="21" selection-start-column="17" selection-end-line="21" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/configurationFiles/kitti.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="104">
+          <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/standAlone/FrameGenerator/IFrameGenerator.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="539">
+          <caret line="45" column="6" selection-start-line="45" selection-start-column="6" selection-end-line="45" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/standAlone/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="546">
+          <caret line="21" column="30" selection-start-line="21" selection-start-column="30" selection-end-line="21" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/standAlone/Timestamps.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-136">
+          <caret line="45" column="6" selection-start-line="45" selection-start-column="6" selection-end-line="45" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/configurationFiles/kitti_cam_00_to_02_13_to_21.yaml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="747">
+          <caret line="89" column="6" selection-start-line="89" selection-start-column="6" selection-end-line="89" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/standAlone/FrameGenerator/FileSequenceFrameGenerator.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-864" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sptam/sptam.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="93" column="31" selection-start-line="93" selection-start-column="31" selection-end-line="93" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cmake-modules/options.cmake">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="5" column="94" selection-start-line="5" selection-start-column="91" selection-end-line="5" selection-end-column="94" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/standAlone/Timestamps.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="474">
+          <caret line="120" column="66" selection-start-line="120" selection-start-column="66" selection-end-line="120" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/standAlone/sptam-stereo.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="81">
+          <caret line="397" column="22" selection-start-line="397" selection-start-column="22" selection-end-line="397" selection-end-column="22" />
+          <folding>
+            <element signature="e#1482#1518#0" expanded="true" />
+            <element signature="e#2184#2213#0" expanded="true" />
+            <element signature="e#3337#3407#0" expanded="true" />
+            <element signature="e#3465#3574#0" expanded="true" />
+            <element signature="e#6023#6074#0" expanded="true" />
+            <element signature="e#7793#8757#0" expanded="true" />
+            <element signature="e#12327#12370#0" expanded="true" />
+            <element signature="e#15071#15135#0" expanded="true" />
+            <element signature="e#15365#15440#0" expanded="true" />
+            <element signature="e#16901#16925#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/standAlone/FrameGenerator/FrameGeneratorFactory.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="353">
+          <caret line="41" column="26" selection-start-line="41" selection-start-column="26" selection-end-line="41" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/standAlone/SptamWrapper.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="604">
+          <caret line="133" column="68" selection-start-line="133" selection-start-column="45" selection-end-line="133" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sptam/TrackerViewStereo.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="301">
+          <caret line="66" column="4" selection-start-line="66" selection-start-column="4" selection-end-line="66" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

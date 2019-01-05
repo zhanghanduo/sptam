@@ -19,7 +19,7 @@ include_directories(${EIGEN_INCLUDE_DIRS})
 # BUG FIX for OpenCV 3.3.1 in ROS Kinetic (see: https://github.com/ros-perception/vision_opencv/issues/193)
 ###############################################################
 
-find_package(OpenCV 3 REQUIRED)
+find_package(OpenCV 3.4 REQUIRED)
 if (${OpenCV_VERSION} MATCHES "3.3.1")
   foreach(__cvcomponent ${OpenCV_LIB_COMPONENTS})
     set (__original_cvcomponent ${__cvcomponent})

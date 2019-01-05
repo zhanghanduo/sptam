@@ -306,7 +306,7 @@ int main(int argc, char* argv[])
   #endif
 
   // TODO hardcoded rate in case of no timestamp. Parametrize.
-  Timestamps timestamps = useTimestamps ? Timestamps(timestampsFile, imageBeginIndex) : Timestamps(0.1, imageBeginIndex);
+  Timestamps timestamps = useTimestamps ? Timestamps(timestampsFile, imageBeginIndex) : Timestamps(0.2, imageBeginIndex);
 
   // KITTI images count from 0, but all scripts and rosbag expect it to start at 1.
   size_t frame_number = imageBeginIndex + 1;
@@ -416,7 +416,7 @@ int main(int argc, char* argv[])
 */
   #endif
 
-  std::cout << "Stop succesfull!" << std::endl;
+  std::cout << "Stop successful!" << std::endl;
 
   #ifdef SHOW_TRACKED_FRAMES
   cv::destroyAllWindows();

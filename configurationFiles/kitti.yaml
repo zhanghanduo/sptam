@@ -31,5 +31,4 @@ FrustumFarPlaneDist: 10000.0
 BundleAdjustmentActiveKeyframes: 10
 minimumTrackedPointsRatio: 0.9
 
-
-LoopDetectorVocabulary: 'SPTAM_PATH/bow_voc/DBoW2/brief_mit_malaga_vocabulary.yml.gz'
+LoopDetectorVocabulary: '/home/hd/projects/sptam/bow_voc/DBoW2/brief_mit_malaga_vocabulary.yml.gz'

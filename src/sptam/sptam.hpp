@@ -79,7 +79,7 @@ class SPTAM
     void setLoopClosing(std::unique_ptr<LCDetector>& loop_detector);
     #endif
 
-    /* Sincronization messages with loopclosure  */
+    /* Synchronization messages with loop closure  */
     void setLoopCorrection(const Eigen::Isometry3d& T = Eigen::Isometry3d::Identity());
     void pause();
     void unPause();

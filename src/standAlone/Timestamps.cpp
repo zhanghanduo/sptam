@@ -122,9 +122,10 @@ ros::Time Timestamps::getNextWhenReady()
     double cycle = ( next_time - last_time_ ).toSec();
     double to_sleep = cycle - elapsed;
 
-    if ( to_sleep < 0 )
-      std::cerr << "WARNING tracking is slower than the camera feed by " << -1*to_sleep << " (s)" << std::endl;
-    else
+//    if ( to_sleep < 0 )
+//      std::cerr << "WARNING tracking is slower than the camera feed by " << -1*to_sleep << " (s)" << std::endl;
+//    else
+    if ( to_sleep > 0)
       std::this_thread::sleep_for( std::chrono::duration_cast<std::chrono::nanoseconds>( std::chrono::duration<double>( to_sleep ) ) );
   }
   #endif

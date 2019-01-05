@@ -1,0 +1,606 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="sptam"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\cmake-modules\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\usr\;CMake Files\..\..\..\..\usr\local\;CMake Files\..\..\..\..\usr\local\share\;CMake Files\..\..\..\..\usr\local\share\OpenCV\;CMake Files\src\;CMake Files\src\sptam\;CMake Files\src\tests\;CMake Files\src\tests\sptam\;CMake Files\src\tests\sptam\utils\;CMake Files\src\tests\sptam\utils\set_union\;CMake Files\src\tests\sptam\CovisibilityGraph\;CMake Files\src\standAlone\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/hd/projects/sptam/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j6 -f &quot;/home/hd/projects/sptam/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j6 -f &quot;/home/hd/projects/sptam/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j6 -f &quot;/home/hd/projects/sptam/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j6 -f &quot;/home/hd/projects/sptam/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/hd/projects/sptam/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j6 -f &quot;/home/hd/projects/sptam/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j6 -f &quot;/home/hd/projects/sptam/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j6 -f &quot;/home/hd/projects/sptam/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j6 -f &quot;/home/hd/projects/sptam/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test">
+				<Option working_dir="/home/hd/projects/sptam/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j6 -f &quot;/home/hd/projects/sptam/cmake-build-debug/Makefile&quot;  VERBOSE=1 test"/>
+					<CompileFile command="/usr/bin/make -j6 -f &quot;/home/hd/projects/sptam/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j6 -f &quot;/home/hd/projects/sptam/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j6 -f &quot;/home/hd/projects/sptam/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/hd/projects/sptam/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j6 -f &quot;/home/hd/projects/sptam/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j6 -f &quot;/home/hd/projects/sptam/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j6 -f &quot;/home/hd/projects/sptam/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j6 -f &quot;/home/hd/projects/sptam/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="sptam">
+				<Option output="/home/hd/projects/sptam/cmake-build-debug/src/sptam/libsptam.so" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/hd/projects/sptam/cmake-build-debug/src/sptam"/>
+				<Option object_output="./"/>
+				<Option type="3"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DENABLE_PARALLEL_CODE"/>
+					<Add option="-DSHOW_PROFILING"/>
+					<Add option="-DOPENCV_THREADS=-1"/>
+					<Add option="-DOPENCV_TRAITS_ENABLE_DEPRECATED"/>
+					<Add directory="/usr/local/include/eigen3"/>
+					<Add directory="/usr/include/suitesparse"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/local/include/opencv"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j6 -f &quot;/home/hd/projects/sptam/cmake-build-debug/src/sptam/Makefile&quot;  VERBOSE=1 sptam"/>
+					<CompileFile command="/usr/bin/make -j6 -f &quot;/home/hd/projects/sptam/cmake-build-debug/src/sptam/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j6 -f &quot;/home/hd/projects/sptam/cmake-build-debug/src/sptam/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j6 -f &quot;/home/hd/projects/sptam/cmake-build-debug/src/sptam/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="sptam/fast">
+				<Option output="/home/hd/projects/sptam/cmake-build-debug/src/sptam/libsptam.so" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/hd/projects/sptam/cmake-build-debug/src/sptam"/>
+				<Option object_output="./"/>
+				<Option type="3"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DENABLE_PARALLEL_CODE"/>
+					<Add option="-DSHOW_PROFILING"/>
+					<Add option="-DOPENCV_THREADS=-1"/>
+					<Add option="-DOPENCV_TRAITS_ENABLE_DEPRECATED"/>
+					<Add directory="/usr/local/include/eigen3"/>
+					<Add directory="/usr/include/suitesparse"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/local/include/opencv"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j6 -f &quot;/home/hd/projects/sptam/cmake-build-debug/src/sptam/Makefile&quot;  VERBOSE=1 sptam/fast"/>
+					<CompileFile command="/usr/bin/make -j6 -f &quot;/home/hd/projects/sptam/cmake-build-debug/src/sptam/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j6 -f &quot;/home/hd/projects/sptam/cmake-build-debug/src/sptam/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j6 -f &quot;/home/hd/projects/sptam/cmake-build-debug/src/sptam/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test_set_union">
+				<Option output="/home/hd/projects/sptam/cmake-build-debug/src/tests/sptam/utils/set_union/test_set_union" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/hd/projects/sptam/cmake-build-debug/src/tests/sptam/utils/set_union"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DENABLE_PARALLEL_CODE"/>
+					<Add option="-DSHOW_PROFILING"/>
+					<Add option="-DOPENCV_THREADS=-1"/>
+					<Add directory="/usr/local/include/eigen3"/>
+					<Add directory="/home/hd/projects/sptam/src/sptam"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j6 -f &quot;/home/hd/projects/sptam/cmake-build-debug/src/tests/sptam/utils/set_union/Makefile&quot;  VERBOSE=1 test_set_union"/>
+					<CompileFile command="/usr/bin/make -j6 -f &quot;/home/hd/projects/sptam/cmake-build-debug/src/tests/sptam/utils/set_union/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j6 -f &quot;/home/hd/projects/sptam/cmake-build-debug/src/tests/sptam/utils/set_union/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j6 -f &quot;/home/hd/projects/sptam/cmake-build-debug/src/tests/sptam/utils/set_union/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test_set_union/fast">
+				<Option output="/home/hd/projects/sptam/cmake-build-debug/src/tests/sptam/utils/set_union/test_set_union" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/hd/projects/sptam/cmake-build-debug/src/tests/sptam/utils/set_union"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DENABLE_PARALLEL_CODE"/>
+					<Add option="-DSHOW_PROFILING"/>
+					<Add option="-DOPENCV_THREADS=-1"/>
+					<Add directory="/usr/local/include/eigen3"/>
+					<Add directory="/home/hd/projects/sptam/src/sptam"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j6 -f &quot;/home/hd/projects/sptam/cmake-build-debug/src/tests/sptam/utils/set_union/Makefile&quot;  VERBOSE=1 test_set_union/fast"/>
+					<CompileFile command="/usr/bin/make -j6 -f &quot;/home/hd/projects/sptam/cmake-build-debug/src/tests/sptam/utils/set_union/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j6 -f &quot;/home/hd/projects/sptam/cmake-build-debug/src/tests/sptam/utils/set_union/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j6 -f &quot;/home/hd/projects/sptam/cmake-build-debug/src/tests/sptam/utils/set_union/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test_CovisibilityGraph">
+				<Option output="/home/hd/projects/sptam/cmake-build-debug/src/tests/sptam/CovisibilityGraph/test_CovisibilityGraph" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/hd/projects/sptam/cmake-build-debug/src/tests/sptam/CovisibilityGraph"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DENABLE_PARALLEL_CODE"/>
+					<Add option="-DSHOW_PROFILING"/>
+					<Add option="-DOPENCV_THREADS=-1"/>
+					<Add directory="/usr/local/include/eigen3"/>
+					<Add directory="/home/hd/projects/sptam/src/sptam"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j6 -f &quot;/home/hd/projects/sptam/cmake-build-debug/src/tests/sptam/CovisibilityGraph/Makefile&quot;  VERBOSE=1 test_CovisibilityGraph"/>
+					<CompileFile command="/usr/bin/make -j6 -f &quot;/home/hd/projects/sptam/cmake-build-debug/src/tests/sptam/CovisibilityGraph/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j6 -f &quot;/home/hd/projects/sptam/cmake-build-debug/src/tests/sptam/CovisibilityGraph/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j6 -f &quot;/home/hd/projects/sptam/cmake-build-debug/src/tests/sptam/CovisibilityGraph/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test_CovisibilityGraph/fast">
+				<Option output="/home/hd/projects/sptam/cmake-build-debug/src/tests/sptam/CovisibilityGraph/test_CovisibilityGraph" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/hd/projects/sptam/cmake-build-debug/src/tests/sptam/CovisibilityGraph"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DENABLE_PARALLEL_CODE"/>
+					<Add option="-DSHOW_PROFILING"/>
+					<Add option="-DOPENCV_THREADS=-1"/>
+					<Add directory="/usr/local/include/eigen3"/>
+					<Add directory="/home/hd/projects/sptam/src/sptam"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j6 -f &quot;/home/hd/projects/sptam/cmake-build-debug/src/tests/sptam/CovisibilityGraph/Makefile&quot;  VERBOSE=1 test_CovisibilityGraph/fast"/>
+					<CompileFile command="/usr/bin/make -j6 -f &quot;/home/hd/projects/sptam/cmake-build-debug/src/tests/sptam/CovisibilityGraph/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j6 -f &quot;/home/hd/projects/sptam/cmake-build-debug/src/tests/sptam/CovisibilityGraph/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j6 -f &quot;/home/hd/projects/sptam/cmake-build-debug/src/tests/sptam/CovisibilityGraph/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="frameGenerator">
+				<Option output="/home/hd/projects/sptam/cmake-build-debug/src/standAlone/libframeGenerator.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/hd/projects/sptam/cmake-build-debug/src/standAlone"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DENABLE_PARALLEL_CODE"/>
+					<Add option="-DSHOW_PROFILING"/>
+					<Add option="-DOPENCV_THREADS=-1"/>
+					<Add option="-DOPENCV_TRAITS_ENABLE_DEPRECATED"/>
+					<Add directory="/usr/local/include/eigen3"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/local/include/opencv"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j6 -f &quot;/home/hd/projects/sptam/cmake-build-debug/src/standAlone/Makefile&quot;  VERBOSE=1 frameGenerator"/>
+					<CompileFile command="/usr/bin/make -j6 -f &quot;/home/hd/projects/sptam/cmake-build-debug/src/standAlone/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j6 -f &quot;/home/hd/projects/sptam/cmake-build-debug/src/standAlone/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j6 -f &quot;/home/hd/projects/sptam/cmake-build-debug/src/standAlone/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="frameGenerator/fast">
+				<Option output="/home/hd/projects/sptam/cmake-build-debug/src/standAlone/libframeGenerator.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/hd/projects/sptam/cmake-build-debug/src/standAlone"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DENABLE_PARALLEL_CODE"/>
+					<Add option="-DSHOW_PROFILING"/>
+					<Add option="-DOPENCV_THREADS=-1"/>
+					<Add option="-DOPENCV_TRAITS_ENABLE_DEPRECATED"/>
+					<Add directory="/usr/local/include/eigen3"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/local/include/opencv"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j6 -f &quot;/home/hd/projects/sptam/cmake-build-debug/src/standAlone/Makefile&quot;  VERBOSE=1 frameGenerator/fast"/>
+					<CompileFile command="/usr/bin/make -j6 -f &quot;/home/hd/projects/sptam/cmake-build-debug/src/standAlone/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j6 -f &quot;/home/hd/projects/sptam/cmake-build-debug/src/standAlone/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j6 -f &quot;/home/hd/projects/sptam/cmake-build-debug/src/standAlone/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="sptam-stereo">
+				<Option output="/home/hd/projects/sptam/cmake-build-debug/src/standAlone/sptam-stereo" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/hd/projects/sptam/cmake-build-debug/src/standAlone"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DENABLE_PARALLEL_CODE"/>
+					<Add option="-DSHOW_PROFILING"/>
+					<Add option="-DOPENCV_THREADS=-1"/>
+					<Add option="-DOPENCV_TRAITS_ENABLE_DEPRECATED"/>
+					<Add directory="/usr/local/include/eigen3"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/local/include/opencv"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j6 -f &quot;/home/hd/projects/sptam/cmake-build-debug/src/standAlone/Makefile&quot;  VERBOSE=1 sptam-stereo"/>
+					<CompileFile command="/usr/bin/make -j6 -f &quot;/home/hd/projects/sptam/cmake-build-debug/src/standAlone/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j6 -f &quot;/home/hd/projects/sptam/cmake-build-debug/src/standAlone/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j6 -f &quot;/home/hd/projects/sptam/cmake-build-debug/src/standAlone/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="sptam-stereo/fast">
+				<Option output="/home/hd/projects/sptam/cmake-build-debug/src/standAlone/sptam-stereo" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/hd/projects/sptam/cmake-build-debug/src/standAlone"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DENABLE_PARALLEL_CODE"/>
+					<Add option="-DSHOW_PROFILING"/>
+					<Add option="-DOPENCV_THREADS=-1"/>
+					<Add option="-DOPENCV_TRAITS_ENABLE_DEPRECATED"/>
+					<Add directory="/usr/local/include/eigen3"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/local/include/opencv"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j6 -f &quot;/home/hd/projects/sptam/cmake-build-debug/src/standAlone/Makefile&quot;  VERBOSE=1 sptam-stereo/fast"/>
+					<CompileFile command="/usr/bin/make -j6 -f &quot;/home/hd/projects/sptam/cmake-build-debug/src/standAlone/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j6 -f &quot;/home/hd/projects/sptam/cmake-build-debug/src/standAlone/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j6 -f &quot;/home/hd/projects/sptam/cmake-build-debug/src/standAlone/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/hd/projects/sptam/src/sptam/BundleDriver.cpp">
+			<Option target="sptam"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/sptam/BundleDriver.hpp">
+			<Option target="sptam"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/sptam/Camera.cpp">
+			<Option target="sptam"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/sptam/Camera.hpp">
+			<Option target="sptam"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/sptam/CameraPose.cpp">
+			<Option target="sptam"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/sptam/CameraPose.hpp">
+			<Option target="sptam"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/sptam/CovisibilityWindow.cpp">
+			<Option target="sptam"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/sptam/CovisibilityWindow.hpp">
+			<Option target="sptam"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/sptam/FeatureExtractorThread.cpp">
+			<Option target="sptam"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/sptam/FeatureExtractorThread.hpp">
+			<Option target="sptam"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/sptam/Frame.cpp">
+			<Option target="sptam"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/sptam/Frame.hpp">
+			<Option target="sptam"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/sptam/FrustumCulling.cpp">
+			<Option target="sptam"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/sptam/FrustumCulling.hpp">
+			<Option target="sptam"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/sptam/ImageFeatures.cpp">
+			<Option target="sptam"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/sptam/ImageFeatures.hpp">
+			<Option target="sptam"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/sptam/MapMaker.cpp">
+			<Option target="sptam"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/sptam/MapMaker.hpp">
+			<Option target="sptam"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/sptam/MapMakerThread.cpp">
+			<Option target="sptam"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/sptam/MapMakerThread.hpp">
+			<Option target="sptam"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/sptam/MapPoint.cpp">
+			<Option target="sptam"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/sptam/MapPoint.hpp">
+			<Option target="sptam"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/sptam/Measurement.cpp">
+			<Option target="sptam"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/sptam/Measurement.hpp">
+			<Option target="sptam"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/sptam/MotionModel.cpp">
+			<Option target="sptam"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/sptam/MotionModel.hpp">
+			<Option target="sptam"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/sptam/RowMatcher.cpp">
+			<Option target="sptam"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/sptam/RowMatcher.hpp">
+			<Option target="sptam"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/sptam/StereoFrame.cpp">
+			<Option target="sptam"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/sptam/StereoFrame.hpp">
+			<Option target="sptam"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/sptam/StereoGraph.cpp">
+			<Option target="sptam"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/sptam/TrackerViewStereo.cpp">
+			<Option target="sptam"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/sptam/TrackerViewStereo.hpp">
+			<Option target="sptam"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/sptam/g2o_driver.cpp">
+			<Option target="sptam"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/sptam/g2o_driver.hpp">
+			<Option target="sptam"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/sptam/match_to_points.cpp">
+			<Option target="sptam"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/sptam/match_to_points.hpp">
+			<Option target="sptam"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/sptam/sptam.cpp">
+			<Option target="sptam"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/sptam/sptam.hpp">
+			<Option target="sptam"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/sptam/tracker_g2o.cpp">
+			<Option target="sptam"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/sptam/tracker_g2o.hpp">
+			<Option target="sptam"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/sptam/types_sba_extension.cpp">
+			<Option target="sptam"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/sptam/types_sba_extension.hpp">
+			<Option target="sptam"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/sptam/utils/CovisibilityGraph.cpp">
+			<Option target="sptam"/>
+			<Option target="test_CovisibilityGraph"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/sptam/utils/CovisibilityGraph.hpp">
+			<Option target="sptam"/>
+			<Option target="test_CovisibilityGraph"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/sptam/utils/log/Logger.cpp">
+			<Option target="sptam"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/sptam/utils/log/Logger.hpp">
+			<Option target="sptam"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/sptam/utils/pose_covariance.cpp">
+			<Option target="sptam"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/sptam/utils/pose_covariance.hpp">
+			<Option target="sptam"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/sptam/utils/projection_derivatives.cpp">
+			<Option target="sptam"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/sptam/utils/projection_derivatives.hpp">
+			<Option target="sptam"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/sptam/utils/timer.cpp">
+			<Option target="sptam"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/sptam/utils/timer.h">
+			<Option target="sptam"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/standAlone/FrameGenerator/FileSequenceFrameGenerator.cpp">
+			<Option target="frameGenerator"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/standAlone/FrameGenerator/FileSequenceFrameGenerator.h">
+			<Option target="frameGenerator"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/standAlone/FrameGenerator/ListOfFilesFrameGenerator.cpp">
+			<Option target="frameGenerator"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/standAlone/FrameGenerator/ListOfFilesFrameGenerator.h">
+			<Option target="frameGenerator"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/standAlone/FrameGenerator/VideoFileFrameGenerator.cpp">
+			<Option target="frameGenerator"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/standAlone/FrameGenerator/VideoFileFrameGenerator.h">
+			<Option target="frameGenerator"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/standAlone/KITTIGroundTruth.cpp">
+			<Option target="sptam-stereo"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/standAlone/KITTIGroundTruth.hpp">
+			<Option target="sptam-stereo"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/standAlone/SptamWrapper.cpp">
+			<Option target="sptam-stereo"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/standAlone/SptamWrapper.hpp">
+			<Option target="sptam-stereo"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/standAlone/Timestamps.cpp">
+			<Option target="sptam-stereo"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/standAlone/Timestamps.hpp">
+			<Option target="sptam-stereo"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/standAlone/sptam-stereo.cpp">
+			<Option target="sptam-stereo"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/standAlone/utils/ProgramOptions.cpp">
+			<Option target="sptam-stereo"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/standAlone/utils/ProgramOptions.hpp">
+			<Option target="sptam-stereo"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/tests/sptam/CovisibilityGraph/test_CovisibilityGraph.cpp">
+			<Option target="test_CovisibilityGraph"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/tests/sptam/utils/set_union/test_set_union.cpp">
+			<Option target="test_set_union"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/cmake-modules/FindEigen.cmake">
+			<Option virtualFolder="CMake Files\cmake-modules\"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/cmake-modules/FindG2O.cmake">
+			<Option virtualFolder="CMake Files\cmake-modules\"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/cmake-modules/FindSuiteSparse.cmake">
+			<Option virtualFolder="CMake Files\cmake-modules\"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/cmake-modules/FindTBB.cmake">
+			<Option virtualFolder="CMake Files\cmake-modules\"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/cmake-modules/dependencies.cmake">
+			<Option virtualFolder="CMake Files\cmake-modules\"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/cmake-modules/options.cmake">
+			<Option virtualFolder="CMake Files\cmake-modules\"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/../../../../usr/local/share/OpenCV/OpenCVConfig-version.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\share\OpenCV\"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/../../../../usr/local/share/OpenCV/OpenCVConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\share\OpenCV\"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/../../../../usr/local/share/OpenCV/OpenCVModules-release.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\share\OpenCV\"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/../../../../usr/local/share/OpenCV/OpenCVModules.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\share\OpenCV\"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/sptam/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\src\sptam\"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/tests/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\src\tests\"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/tests/sptam/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\src\tests\sptam\"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/tests/sptam/utils/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\src\tests\sptam\utils\"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/tests/sptam/utils/set_union/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\src\tests\sptam\utils\set_union\"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/tests/sptam/CovisibilityGraph/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\src\tests\sptam\CovisibilityGraph\"/>
+		</Unit>
+		<Unit filename="/home/hd/projects/sptam/src/standAlone/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\src\standAlone\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
