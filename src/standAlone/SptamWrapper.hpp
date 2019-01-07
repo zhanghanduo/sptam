@@ -47,7 +47,8 @@ class SptamWrapper
       const RowMatcher& rowMatcher,
       const Parameters& params,
       std::shared_ptr<PosePredictor> motionModel,
-      const size_t imageBeginIndex
+      const size_t imageBeginIndex,
+      ImageFeatures imageFeature_prev
     );
 
     #ifdef USE_LOOPCLOSURE
@@ -72,4 +73,7 @@ class SptamWrapper
     std::shared_ptr<PosePredictor> motionModel_;
     bool isMapInitialized_;
     SPTAM sptam_;
+    ImageFeatures feature_prev;
+    cv::Mat image_prev;
+    bool frame_OK;
 };

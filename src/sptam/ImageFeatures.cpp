@@ -97,7 +97,6 @@ std::list<std::pair<size_t, size_t> > ImageFeatures::FindMatches(
     const cv::Point2d& point = featurePredictions[ i ];
     cv::Mat descriptor = descriptors[ i ];
 
-    /* aca se filtran los puntos por si caen en la imagen o no, esto puede pasar porque el frustum culling deja pasar puntos que sean vistos por una sola camara */
     if (point.x < 0  or image_size_.width <= point.x or point.y < 0 or image_size_.height <= point.y)
       continue;
 
@@ -106,7 +105,7 @@ std::list<std::pair<size_t, size_t> > ImageFeatures::FindMatches(
     if ( index < 0 )
       continue;
 
-    measurements.push_back({i, index});
+    measurements.emplace_back(i, index);
   }
 
   #if SHOW_PROFILING && PROFILE_INTERNAL
@@ -183,7 +182,6 @@ void ImageFeatures::GetUnmatchedKeyPoints( std::vector<cv::KeyPoint>& keyPoints,
                                            cv::Mat& descriptors,
                                            std::vector<size_t>& indexes) const
 {
-  /* se reserva el espacio para el peor caso */
   keyPoints.reserve(keyPoints_.size());
   descriptors.reserve(keyPoints_.size());
   indexes.reserve(keyPoints_.size());

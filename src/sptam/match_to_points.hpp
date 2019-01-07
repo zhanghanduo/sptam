@@ -42,3 +42,11 @@ std::list<Match> matchToPoints(
   const double matchingDistanceThreshold,
   const Measurement::Source source
 );
+
+std::list<Match2D> matchToFeatures(
+        const StereoFrame& frame, const ImageFeatures& frame_prev,
+        const cv::Ptr<cv::DescriptorMatcher> descriptorMatcher,
+        const size_t matchingNeighborhoodThreshold,
+        const double matchingDistanceThreshold,
+        const Measurement::Source source
+);

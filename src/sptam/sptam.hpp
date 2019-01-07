@@ -60,7 +60,7 @@ class SPTAM
     /**
      * Track current frame. If individual images are supplied, they are used to draw results of tracking.
      */
-    TrackingReport track(StereoFrame& frame, sptam::TrackerView& tracker_view);
+    TrackingReport track(StereoFrame& frame, sptam::TrackerView& tracker_view, ImageFeatures& feature_prev);
 
     inline void stop()
     {
@@ -128,6 +128,7 @@ class SPTAM
 
     /* the set of points from the local map which matched to features in the last frame */
     sptam::Map::SharedMapPointSet tracked_map_;
+//    std::shared_ptr<StereoFrame> frame_prev_;
 
     #ifdef USE_LOOPCLOSURE
     /* LoopClosing interface created using the loop detector passed. */
@@ -141,9 +142,9 @@ class SPTAM
     bool isAddingKeyframesStopped_ = false;
     void setTracking(bool);
 
-    /* In case of a loop correction, the lc thread will report the acumulated error perceived
-     * otherwise the Mat will be empty. This will serve as a correction for the posepredictor/motionmodel
-     * prior received. The error its expresed as the delta tranformation between the two loop keyframes */
+    /* In case of a loop correction, the lc thread will report the accumulated error perceived
+     * otherwise the Mat will be empty. This will serve as a correction for the posepredictor / motionmodel
+     * prior received. The error its expressed as the delta transformation between the two loop keyframes */
     Eigen::Isometry3d lc_T_ = Eigen::Isometry3d::Identity(); // 4x4 dimension!
 
     Parameters params_;
@@ -169,6 +170,8 @@ class SPTAM
   private:
 
     bool initialized_;
+    bool frame_OK;
+    cv::Mat frame_prev_;
 
   public:
 

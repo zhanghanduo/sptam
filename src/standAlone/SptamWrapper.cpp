@@ -48,7 +48,8 @@ SptamWrapper::SptamWrapper(const CameraParameters& cameraParametersLeft,
   const double stereo_baseline, const RowMatcher& rowMatcher,
   const Parameters& params,
   std::shared_ptr<PosePredictor> motionModel,
-  const size_t imageBeginIndex
+  const size_t imageBeginIndex,
+  ImageFeatures imageFeature_prev
 )
   : cameraParametersLeft_( cameraParametersLeft )
   , cameraParametersRight_( cameraParametersRight )
@@ -58,7 +59,8 @@ SptamWrapper::SptamWrapper(const CameraParameters& cameraParametersLeft,
   , motionModel_( motionModel )
   , isMapInitialized_( false )
   , sptam_(rowMatcher, params)
-{}
+  , feature_prev(imageFeature_prev)
+  , frame_OK( false ) {}
 
 #ifdef USE_LOOPCLOSURE
 void SptamWrapper::setLoopClosing(std::unique_ptr<LCDetector>& loop_detector)
@@ -90,7 +92,6 @@ void SptamWrapper::Add(const size_t frame_id, const ros::Time& time, std::unique
     imageFeaturesLeft, imageFeaturesRight, not isMapInitialized_
   );
 
-  // aca me guardo el resultado si la CameraPose es refinada por el tracker.
   CameraPose refined_camera_pose = estimatedCameraPose;
 
   // Check is there is no initial map create it
@@ -115,10 +116,14 @@ void SptamWrapper::Add(const size_t frame_id, const ros::Time& time, std::unique
     }
     #endif
 
-    sptam::TrackerViewStereo tracker_view(stereoImageFeatures->imageLeft, stereoImageFeatures->imageRight);
+    if(!frame_OK) {
+      image_prev = stereoImageFeatures->imageLeft;
+      frame_OK = true;
+    }
+    sptam::TrackerViewStereo tracker_view(stereoImageFeatures->imageLeft, stereoImageFeatures->imageRight, image_prev);
     tracker_view.enableDrawOutput((sptam::TrackerViewStereo::DrawOutput)(sptam::TrackerViewStereo::DRAW_AFTER_REFINE_STEREO | sptam::TrackerViewStereo::DRAW_BEFORE_REFINE_STEREO));
 
-    TrackingReport report = sptam_.track(frame, tracker_view);
+    TrackingReport report = sptam_.track(frame, tracker_view, feature_prev);
 
     refined_camera_pose = report.refinedCameraPose;
 
@@ -129,10 +134,14 @@ void SptamWrapper::Add(const size_t frame_id, const ros::Time& time, std::unique
     #ifdef SHOW_PROFILING
       writePoseToLog("REFINED_CAMERA_POSE", frame_id, refined_camera_pose.GetPosition(), refined_camera_pose.GetOrientationMatrix(), refined_camera_pose.covariance() );
     #endif
+    feature_prev = imageFeaturesLeft;
+    image_prev = stereoImageFeatures->imageLeft.clone();
 
     #ifdef SHOW_TRACKED_FRAMES
     cv::imshow("Before Refine", tracker_view.stereoFrameBeforeRefine);
     cv::imshow("After Refine", tracker_view.stereoFrameAfterRefine);
+    if(not tracker_view.stereoFrameContext_left.empty())
+        cv::imshow("Matching", tracker_view.stereoFrameContext_left);
     cv::waitKey( 0 );
     #endif
   } // else
@@ -140,7 +149,6 @@ void SptamWrapper::Add(const size_t frame_id, const ros::Time& time, std::unique
   #ifdef SHOW_PROFILING
     writePoseToLog("TRACKED_FRAME_POSE", frame_id, refined_camera_pose.GetPosition(), refined_camera_pose.GetOrientationMatrix(), refined_camera_pose.covariance());
   #endif
-
   // Update motion model
   motionModel_->updatePose(time, refined_camera_pose.GetPosition(), refined_camera_pose.GetOrientationQuaternion(), refined_camera_pose.covariance());
 }

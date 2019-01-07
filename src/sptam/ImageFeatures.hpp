@@ -40,6 +40,15 @@ class ImageFeatures
 {
   public:
 
+    ImageFeatures() :
+    image_size_(cv::Size(500, 500))
+    , hash_cell_size_( 15 )
+    , hashed_indexes_(image_size_.width, image_size_.height, 15, 15)
+    {
+        descriptors_ = cv::Mat::ones(image_size_, CV_32F);
+        matchedKeyPoints_ = std::vector<bool>(keyPoints_.size(), false);
+    }
+
     ImageFeatures(const cv::Size& image_size,
       const std::vector<cv::KeyPoint> keyPoints,
       const cv::Mat descriptors,
@@ -54,6 +63,12 @@ class ImageFeatures
       const double matchingDistanceThreshold,
       const size_t matchingNeighborhoodThreshold
     ) const;
+
+    inline void SetFeatures(ImageFeatures feature)
+    {
+        descriptors_ = feature.GetDescriptors();
+        keyPoints_ = feature.GetKeypoints();
+    }
 
     inline cv::Mat GetDescriptors() const
     { return descriptors_; }

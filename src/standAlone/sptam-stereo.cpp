@@ -287,12 +287,19 @@ int main(int argc, char* argv[])
   );
 
   // Get First Frames for use in the loop
-  cv::Mat imageLeft, imageRight;
+  cv::Mat imageLeft, imageRight, image_prev_Left;
   bool hasNextFrame = frameGeneratorLeft->getNextFrame( imageLeft ) and frameGeneratorRight->getNextFrame( imageRight );
+
+  FeatureExtractorThread featureExtractorThreadLeft1(imageLeft, feature_detector_left, descriptor_extractor_left, sptam_params.nFeatures);
+
+  featureExtractorThreadLeft1.WaitUntilFinished();
+  const std::vector<cv::KeyPoint>& keyPointsLeft = featureExtractorThreadLeft1.GetKeyPoints();
+  const cv::Mat& descriptorsLeft = featureExtractorThreadLeft1.GetDescriptors();
+  ImageFeatures feature_init(imageLeft.size(), keyPointsLeft, descriptorsLeft, sptam_params.matchingCellSize);
 
   // Create SPTAM wrapper
   SptamWrapper sptamWrapper ( cameraParametersLeft, cameraParametersRight, cameraCalibration.baseline(),
-    rowMatcher, sptam_params, motionModel, imageBeginIndex);
+    rowMatcher, sptam_params, motionModel, imageBeginIndex, feature_init);
 
   #ifdef USE_LOOPCLOSURE
   sptamWrapper.setLoopClosing(loop_detector);
@@ -310,6 +317,7 @@ int main(int argc, char* argv[])
 
   // KITTI images count from 0, but all scripts and rosbag expect it to start at 1.
   size_t frame_number = imageBeginIndex + 1;
+  size_t init_frame = frame_number;
 
   // Main loop
   while( hasNextFrame and not programMustEnd )
@@ -363,6 +371,7 @@ int main(int argc, char* argv[])
 
     #endif // SHOW_POINT_CLOUD
 
+    image_prev_Left = imageLeft;
     // Get Next Frames
     hasNextFrame = frameGeneratorLeft->getNextFrame( imageLeft ) and frameGeneratorRight->getNextFrame( imageRight );
     frame_number++;

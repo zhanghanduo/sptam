@@ -43,7 +43,7 @@ class Measurement
     typedef enum { STEREO, LEFT, RIGHT } Type;
 
     // Possible measurement sources
-    typedef enum { SRC_TRIANGULATION, SRC_TRACKER, SRC_REFIND } Source;
+    typedef enum { SRC_TRIANGULATION, SRC_TRACKER, SRC_REFIND, SRC_2D } Source;
 
   public:
 

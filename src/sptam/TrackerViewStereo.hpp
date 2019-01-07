@@ -49,19 +49,23 @@ class TrackerViewStereo : public TrackerView
 {
   public:
 
-    TrackerViewStereo(const cv::Mat& image_left, const cv::Mat& image_right)
-      : draw_output( DRAW_NONE ), image_left_( image_left ), image_right_( image_right )
+    TrackerViewStereo(const cv::Mat& image_left, const cv::Mat& image_right, const cv::Mat& image_prev)
+      : draw_output( DRAW_NONE ), image_left_( image_left ), image_right_( image_right ), image_prev_left_(image_prev)
     {}
 
     void draw(const StereoFrame& frame, const sptam::Map::SharedMapPointList& filtered_points,
       const std::list<Match>& measurements, const Parameters& params, bool before_refine) override;
+
+    void draw_cross(const StereoFrame& frame, const sptam::Map::SharedMapPointList& filtered_points,
+              const std::list<Match>& measurements, const std::list<Match2D> match_measures,
+              const Parameters& params) override;
 
     cv::Vec3b featureColor(const Measurement& meas) const override;
 
     cv::Mat stereoFrameBeforeRefine, stereoFrameAfterRefine,
             leftFrameBeforeRefine, rightFrameBeforeRefine,
             leftFrameAfterRefine, rightFrameAfterRefine;
-
+    cv::Mat stereoFrameContext_left;
     /**
      * Specifies what kind of output is expected of the tracker
      */
@@ -77,12 +81,12 @@ class TrackerViewStereo : public TrackerView
     };
 
     void enableDrawOutput(DrawOutput output);
-
   private:
 
     DrawOutput draw_output;
 
-    const cv::Mat image_left_, image_right_;
+    const cv::Mat image_left_, image_right_, image_prev_left_;
+
 };
 
 }

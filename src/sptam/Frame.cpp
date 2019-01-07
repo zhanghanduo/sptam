@@ -41,8 +41,10 @@
 #endif
 
 Frame::Frame(const Camera& camera, const ImageFeatures& imageFeatures)
-  : camera_( camera ), imageFeatures_( imageFeatures )
-{}
+  : camera_( camera ), imageFeatures_( imageFeatures ) {}
+
+Frame::Frame(const Frame& frame)
+  : camera_( frame.GetCamera() ), imageFeatures_( frame.GetFeatures() ) {}
 
 #define PROFILE_INTERNAL 1
 
@@ -70,3 +72,27 @@ std::list<std::pair<size_t, size_t> > Frame::FindMatches(const std::aligned_vect
     matchingDistanceThreshold, matchingNeighborhoodThreshold
   );
 }
+
+std::list<std::pair<size_t, size_t> > Frame::FindMatches2D(const std::vector<cv::Point2d>& points,
+                                                    const std::vector<cv::Mat>& descriptors,
+                                                    const cv::DescriptorMatcher& descriptorMatcher,
+                                                    const double matchingDistanceThreshold,
+                                                    const size_t matchingNeighborhoodThreshold
+) const
+{
+#if SHOW_PROFILING && PROFILE_INTERNAL
+    sptam::Timer t_project;
+    t_project.start();
+#endif
+
+#if SHOW_PROFILING && PROFILE_INTERNAL
+    t_project.stop();
+    WriteToLog(" xx FindMatchesFrame-project 2d: ", t_project);
+#endif
+
+    return imageFeatures_.FindMatches(
+            points, descriptors, descriptorMatcher,
+            matchingDistanceThreshold, matchingNeighborhoodThreshold
+    );
+}
+

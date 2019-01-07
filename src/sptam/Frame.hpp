@@ -50,6 +50,8 @@ class Frame
 
     Frame(const Camera& camera, const ImageFeatures& imageFeatures);
 
+    Frame(const Frame& frame);
+
     inline const Eigen::Vector3d& GetPosition() const
     { return camera_.GetPosition(); }
 
@@ -72,6 +74,10 @@ class Frame
       return imageFeatures_;
     }
 
+    inline ImageFeatures& GetFeatures() {
+        return imageFeatures_;
+    }
+
     /**
      * Match a set of 3D points with their respective descriptors
      * to the features in the current frame.
@@ -81,6 +87,17 @@ class Frame
       const cv::DescriptorMatcher& descriptorMatcher,
       const double matchingDistanceThreshold,
       const size_t matchingNeighborhoodThreshold
+    ) const;
+
+    /**
+     * Match a set of 2D points of previous frame with their respective descriptors
+     * to the features in the current frame.
+     */
+    std::list<std::pair<size_t, size_t> > FindMatches2D(const std::vector<cv::Point2d>& points,
+                                                      const std::vector<cv::Mat>& descriptors,
+                                                      const cv::DescriptorMatcher& descriptorMatcher,
+                                                      const double matchingDistanceThreshold,
+                                                      const size_t matchingNeighborhoodThreshold
     ) const;
 
     inline void SetMatchedKeyPoint( size_t index ) const

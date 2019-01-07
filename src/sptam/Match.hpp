@@ -35,3 +35,5 @@
 #include "Map.hpp"
 
 struct Match { sptam::Map::SharedPoint mapPoint; Measurement measurement; };
+
+struct Match2D { Measurement measurement1; Measurement measurement2; };

@@ -33,6 +33,7 @@
 
 #include "match_to_points.hpp"
 #include "utils/eigen_alignment.hpp"
+#include <opencv2/features2d.hpp>
 
 #if SHOW_PROFILING
 #include "utils/timer.h"
@@ -89,6 +90,57 @@ std::list<Match> matchToPoints(
 #if SHOW_PROFILING
   t_find.stop();
   WriteToLog(" XX findMatches-find: ", t_find);
+#endif
+
+  return matches;
+}
+
+std::list<Match2D> matchToFeatures(
+        const StereoFrame& frame, const ImageFeatures& frame_prev,
+        const cv::Ptr<cv::DescriptorMatcher> descriptorMatcher,
+        const size_t matchingNeighborhoodThreshold,
+        const double matchingDistanceThreshold,
+        const Measurement::Source source
+)
+{
+#if SHOW_PROFILING
+  sptam::Timer t_find2d;
+  t_find2d.start();
+#endif
+
+  std::list<size_t> matchedIndexes;
+  std::list<Measurement> measurements, measurements_prev;
+
+  frame.FindMatches2D(source,
+                    frame_prev,
+                    *descriptorMatcher,
+                    matchingNeighborhoodThreshold,
+                    matchingDistanceThreshold,
+                    matchedIndexes, measurements,
+                    measurements_prev
+  );
+
+  std::list<Match2D> matches;
+
+  size_t src_idx = 0;
+//  auto it_src = measurements_prev.begin();
+  auto it_meas = measurements.begin();
+//  for ( size_t idx : matchedIndexes )
+//  {
+//    while( src_idx < idx ) { src_idx++; it_src++; }
+//    matches.push_back({*it_src, *it_meas});
+//    it_meas++;
+//  }
+
+  for (auto it_src = measurements_prev.begin(); it_src != measurements_prev.end(); it_src ++ )
+  {
+      matches.push_back({*it_src, *it_meas});
+      it_meas++;
+  }
+
+#if SHOW_PROFILING
+  t_find2d.stop();
+  WriteToLog(" XX findMatches-find 2D: ", t_find2d);
 #endif
 
   return matches;

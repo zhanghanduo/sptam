@@ -407,8 +407,8 @@ class CovisibilityGraph
 
         KeyFrame( const KEYFRAME_T& elem ) : KEYFRAME_T( elem ) {}
 
-        KeyFrame( const KeyFrame& other ) = delete; // non construction-copyable
-        KeyFrame& operator=( const KeyFrame& ) = delete; // non copyable
+//        KeyFrame( const KeyFrame& other ) = delete; // non construction-copyable
+//        KeyFrame& operator=( const KeyFrame& ) = delete; // non copyable
 
         std::list< SharedMeasurement > measurements() const
         {

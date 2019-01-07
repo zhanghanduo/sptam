@@ -68,6 +68,7 @@ SPTAM::SPTAM(const RowMatcher& rowMatcher, const Parameters& params)
   , rowMatcher_( rowMatcher )
   , frames_since_last_kf_( 0 )
   , initialized_( false )
+  , frame_OK( false )
 {
 #ifdef OPENCV_THREADS
   cv::setNumThreads(OPENCV_THREADS);
@@ -102,7 +103,7 @@ void SPTAM::init(/*const*/ StereoFrame& frame)
   }
 }
 
-TrackingReport SPTAM::track(StereoFrame& frame, sptam::TrackerView& tracker_view)
+TrackingReport SPTAM::track(StereoFrame& frame, sptam::TrackerView& tracker_view, ImageFeatures& feature_prev)
 {
   while(isPaused())
     std::this_thread::yield();
@@ -153,6 +154,14 @@ TrackingReport SPTAM::track(StereoFrame& frame, sptam::TrackerView& tracker_view
     params_.descriptorMatcher, params_.matchingNeighborhoodThreshold,
     params_.matchingDistanceThreshold, Measurement::SRC_TRACKER
   );
+  std::list<Match2D> measurements_2D;
+  if(frame_OK) {
+      measurements_2D = matchToFeatures(
+              frame, feature_prev,
+              params_.descriptorMatcher, params_.matchingNeighborhoodThreshold,
+              params_.matchingDistanceThreshold, Measurement::SRC_2D
+      );
+  }
 
   #ifdef SHOW_PROFILING
     t_find_matches.stop();
@@ -192,6 +201,9 @@ TrackingReport SPTAM::track(StereoFrame& frame, sptam::TrackerView& tracker_view
 #ifdef SHOW_PROFILING
   t_draw.start();
 #endif
+
+  if(frame_OK)
+    tracker_view.draw_cross(frame, report.localMap, measurements, measurements_2D, params_);
 
   tracker_view.draw(frame, report.localMap, measurements, params_, true);
 
@@ -283,6 +295,8 @@ TrackingReport SPTAM::track(StereoFrame& frame, sptam::TrackerView& tracker_view
   /* Quick tracking state implementation
    * this way LoopClosing knows when its safe to correct trayectory */
   setTracking(false);
+  if(not frame_OK)
+      frame_OK = true;
 
 #ifdef SHOW_PROFILING
   WriteToLog(" tk drawFrames: ", t_draw);

@@ -53,6 +53,10 @@ class TrackerView
     virtual void draw(const StereoFrame& frame, const sptam::Map::SharedMapPointList& filtered_points,
       const std::list<Match>& measurements, const Parameters& params, bool before_refine) = 0;
 
+    virtual void draw_cross(const StereoFrame& frame, const sptam::Map::SharedMapPointList& filtered_points,
+                      const std::list<Match>& measurements, const std::list<Match2D> match_measures,
+                      const Parameters& params) = 0;
+
     virtual cv::Vec3b featureColor(const Measurement& meas) const = 0;
 };
 

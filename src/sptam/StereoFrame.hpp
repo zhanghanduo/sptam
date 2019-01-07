@@ -68,6 +68,17 @@ class StereoFrame
     ) const;
 
     /**
+     * Try to find correspondences between the features detected in the previous and next frames
+     * (independently).
+     */
+    void FindMatches2D(const Measurement::Source source,
+                     const ImageFeatures& frame_prev,
+                     const cv::DescriptorMatcher& descriptorMatcher,
+                     const size_t matchingNeighborhoodThreshold, const double matchingDistanceThreshold,
+                     std::list<size_t>& matchedIndexes, std::list<Measurement>& measurements, std::list<Measurement>& measurements_prev
+    ) const;
+
+    /**
      * Try to match and triangulate unmatched features from
      * the left and right frames.
      */

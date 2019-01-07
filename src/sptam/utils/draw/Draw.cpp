@@ -75,7 +75,6 @@ void drawFeatures(const sptam::Map::KeyFrame& frame, cv::Mat& image)
       const cv::KeyPoint& featurePos_v = measurement->GetKeypoints()[0];
       cv::Point2d featurePos(featurePos_v.pt.x, featurePos_v.pt.y);
 
-      // Dibujo la linea desde el feature detectado al feature predicho
       drawLine(image, featurePos, projectedPoint, COLOR_GREEN);
 
       drawPoint(image, projectedPoint, COLOR_YELLOW);
@@ -230,20 +229,20 @@ void makeColorCopy(const cv::Mat& in, cv::Mat& out)
 
 void drawGrid(cv::Mat& image, const size_t cell_size, const cv::Scalar& color)
 {
-  // check that cell_size is possitive
-  if ( not (0 < cell_size) ) {
-    std::cerr << "Grid: cell size is not possitive" << std::endl;
-    return;
+  // check that cell_size is positive
+  if (0 < cell_size) {
+
+    int width = image.size().width;
+    int height = image.size().height;
+
+    for (int i = 0; i < height; i += cell_size)
+      cv::line(image, cv::Point2d(0, i), cv::Point2d(width, i), color);
+
+    for (int i = 0; i < width; i += cell_size)
+      cv::line(image, cv::Point2d(i, 0), cv::Point2d(i, height), color);
+  } else {
+      std::cerr << "Grid: cell size is not positive" << std::endl;
   }
-
-  int width = image.size().width;
-  int height = image.size().height;
-
-  for(int i=0; i<height; i+=cell_size)
-    cv::line(image, cv::Point2d(0,i), cv::Point2d(width,i), color);
-
-  for(int i=0; i<width; i+=cell_size)
-    cv::line(image, cv::Point2d(i,0), cv::Point2d(i,height), color);
 }
 
 void drawProjections(cv::Mat& image, const Eigen::Matrix34d& projection, const ConstIterable<sptam::Map::Point>& mapPoints, const cv::Scalar& color)
@@ -265,7 +264,6 @@ void drawMeasurements(const Eigen::Matrix34d& projection, const std::list<Match>
     cv::Point2d featurePos(featurePos_v.pt.x, featurePos_v.pt.y);
     cv::Point2d projectedPoint = project(projection, match.mapPoint->GetPosition());
 
-    // Dibujo la linea desde el feature detectado al feature predicho
     drawLine(image, featurePos, projectedPoint, COLOR_GREEN);
 
     drawPoint(image, projectedPoint, color_proj);

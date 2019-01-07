@@ -36,7 +36,6 @@
 #include "utils/cv2eigen.hpp"
 #include "utils/projective_math.hpp"
 #include "utils/timer.h"
-
 #if SHOW_PROFILING
 #include "utils/log/Profiler.hpp"
 #endif
@@ -61,7 +60,7 @@ StereoFrame::StereoFrame(
 /* When a keyframe is added to the Map, has to be copyed, but the shared_mutex does not have a
  * a default copy constructor. Thats why we have to specify that the new points will have a separate mutex */
 StereoFrame::StereoFrame(const StereoFrame& stereoFrame)
-  : stereo_frames_mutex_() // The copy has a diferent mutex!
+  : stereo_frames_mutex_() // The copy has a different mutex!
   , frameLeft_( stereoFrame.frameLeft_ ) // TODO: check if Frame copy constructor is working properly.
   , frameRight_( stereoFrame.frameRight_ ) // TODO: check if Frame copy constructor is working properly.
   , rectified_camera_parameters_( stereoFrame.rectified_camera_parameters_ )
@@ -81,7 +80,6 @@ void StereoFrame::FindMatches(const Measurement::Source source,
   boost::unique_lock<boost::shared_mutex> lock(stereo_frames_mutex_);
 
   // TODO: maybe is useful to pass right descriptors too
-
   std::list<std::pair<size_t, size_t> > measurementsLeft, measurementsRight;
 
 #if 1
@@ -139,10 +137,10 @@ void StereoFrame::FindMatches(const Measurement::Source source,
     if ( it_left != measurementsLeft.end() and it_right != measurementsRight.end() and it_left->first == it_right->first )
     {
       // Create the Measurement
-      measurements.push_back( Measurement(source,
+      measurements.emplace_back(source,
         frameLeft_.GetFeatures().GetKeypoint( it_left->second ), frameLeft_.GetFeatures().GetDescriptor( it_left->second ),
         frameRight_.GetFeatures().GetKeypoint( it_right->second ), frameRight_.GetFeatures().GetDescriptor( it_right->second )
-      ));
+      );
 
       frameLeft_.SetMatchedKeyPoint( it_left->second );
       frameRight_.SetMatchedKeyPoint( it_right->second );
@@ -156,7 +154,7 @@ void StereoFrame::FindMatches(const Measurement::Source source,
     else if ( it_right == measurementsRight.end() or ( it_left != measurementsLeft.end() and it_left->first < it_right->first ) )
     {
       // Create the Measurement
-      measurements.push_back( Measurement(Measurement::LEFT, source, frameLeft_.GetFeatures().GetKeypoint( it_left->second ), frameLeft_.GetFeatures().GetDescriptor( it_left->second )) );
+      measurements.emplace_back(Measurement::LEFT, source, frameLeft_.GetFeatures().GetKeypoint( it_left->second ), frameLeft_.GetFeatures().GetDescriptor( it_left->second ));
 
       frameLeft_.SetMatchedKeyPoint( it_left->second );
 
@@ -167,7 +165,7 @@ void StereoFrame::FindMatches(const Measurement::Source source,
     // if the next index to process is the right one.
     else
     {
-      measurements.push_back( Measurement(Measurement::RIGHT, source, frameRight_.GetFeatures().GetKeypoint( it_right->second ), frameRight_.GetFeatures().GetDescriptor( it_right->second )) );
+      measurements.emplace_back(Measurement::RIGHT, source, frameRight_.GetFeatures().GetKeypoint( it_right->second ), frameRight_.GetFeatures().GetDescriptor( it_right->second ));
 
       frameRight_.SetMatchedKeyPoint( it_right->second );
 
@@ -181,6 +179,84 @@ void StereoFrame::FindMatches(const Measurement::Source source,
   t_process.stop();
   WriteToLog(" XX findMatches-process: ", t_process);
   #endif
+}
+
+void StereoFrame::FindMatches2D(const Measurement::Source source,
+                                const ImageFeatures& frame_prev,
+                                const cv::DescriptorMatcher& descriptorMatcher,
+                                const size_t matchingNeighborhoodThreshold, const double matchingDistanceThreshold,
+                                std::list<size_t>& matchedIndexes, std::list<Measurement>& measurements,
+                                std::list<Measurement>& measurements_prev
+) const
+{
+    boost::unique_lock<boost::shared_mutex> lock(stereo_frames_mutex_);
+
+    std::list<std::pair<size_t, size_t> > measurements_pair;
+
+    /* parallel find match */
+#if SHOW_PROFILING && PROFILE_INTERNAL_MATCH
+    sptam::Timer t_1;
+#endif
+
+#if SHOW_PROFILING && PROFILE_INTERNAL_MATCH
+    t_1.start();
+#endif
+
+    std::vector<cv::Point2d> points;
+    std::vector<cv::Mat> descriptors;
+    std::vector<cv::KeyPoint> keypoints = frame_prev.GetKeypoints();
+    descriptors.reserve( keypoints.size() );
+    for (const auto&keypoint : keypoints) {
+        cv::Point2d point;
+        point.x = keypoint.pt.x;
+        point.y = keypoint.pt.y;
+        points.push_back(point);
+    }
+    for(size_t i = 0; i < keypoints.size(); i++) {
+        cv::Mat descriptor = frame_prev.GetDescriptor(i).clone();
+        descriptors.push_back(descriptor);
+    }
+    /* sequential find match */
+    measurements_pair = frameLeft_.FindMatches2D(points, descriptors, descriptorMatcher, matchingDistanceThreshold, matchingNeighborhoodThreshold);
+//  measurementsRight = frameRight_.FindMatches(points, descriptors, descriptorMatcher, matchingDistanceThreshold, matchingNeighborhoodThreshold);
+
+#if SHOW_PROFILING && PROFILE_INTERNAL_MATCH
+        t_1.stop();
+#endif
+
+
+#if SHOW_PROFILING && PROFILE_INTERNAL_MATCH
+    WriteToLog(" xx findMatches 2d: ", t_1);
+//  WriteToLog(" xx findMatches-right: ", t_right);
+#endif
+
+#if SHOW_PROFILING
+    sptam::Timer t_process;
+    t_process.start();
+#endif
+
+    // This is messy but efficient
+    auto it_left = measurements_pair.begin();
+//    auto it_right = measurementsRight.begin();
+
+    // iterate while there is something to be added to matches.
+    while ( it_left != measurements_pair.end()  )
+    {
+        // Create the Measurement
+        measurements.emplace_back(Measurement::LEFT, source, frameLeft_.GetFeatures().GetKeypoint( it_left->second ), frameLeft_.GetFeatures().GetDescriptor( it_left->second ));
+        measurements_prev.emplace_back(Measurement::LEFT, source, frame_prev.GetKeypoint( it_left->first ),
+                          frame_prev.GetDescriptor( it_left->first ));
+        frameLeft_.SetMatchedKeyPoint( it_left->second );
+
+        matchedIndexes.push_back( it_left->first );
+
+        ++ it_left;
+    }
+
+#if SHOW_PROFILING
+    t_process.stop();
+    WriteToLog(" XX findMatches-process 2d: ", t_process);
+#endif
 }
 
 #define PROFILE_INTERNAL_TRIANGULATE 0
@@ -198,17 +274,13 @@ void StereoFrame::TriangulatePoints(const RowMatcher& matcher, std::aligned_vect
   t_lock.stop();
 #endif
 
-  // TODO ImageFeatures podria guardar internamente el vector
-  // de los unmatched, y descartar los matched, total nunca más los uso.
-  // Esto permitiría recibir acá una referencia
-
   // retrieve unmatched features from both frames.
 
   std::vector<cv::KeyPoint> unmatchedKeypointsLeft, unmatchedKeypointsRight;
   cv::Mat unmatchedDescriptorsLeft, unmatchedDescriptorsRight;
   std::vector<size_t> indexesLeft, indexesRight;
 
-  // Get descritptors for both images
+  // Get descriptors for both images
 
   frameLeft_.GetUnmatchedKeyPoints(unmatchedKeypointsLeft, unmatchedDescriptorsLeft, indexesLeft);
 

@@ -40,7 +40,7 @@ void sptam::TrackerViewStereo::draw(
   const StereoFrame& frame, const sptam::Map::SharedMapPointList& filtered_points,
   const std::list<Match>& measurements, const Parameters& params, bool before_refine)
 {
-#ifdef SHOW_TRACKED_FRAMES
+//#ifdef SHOW_TRACKED_FRAMES
   /* check if no output is expected */
   if (draw_output == DRAW_NONE)
     return;
@@ -64,7 +64,7 @@ void sptam::TrackerViewStereo::draw(
 
   /* create stereo outputs if required */
   if (before_refine && (draw_output & DRAW_BEFORE_REFINE_STEREO))
-    stereoFrameBeforeRefine = makeStereoWindow(image_left_, image_right_, left_out, right_out);
+      stereoFrameBeforeRefine = makeStereoWindow(image_left_, image_right_, left_out, right_out);
   else if (!before_refine && (draw_output & DRAW_AFTER_REFINE_STEREO))
     stereoFrameAfterRefine = makeStereoWindow(image_left_, image_right_, left_out, right_out);
 
@@ -92,6 +92,7 @@ void sptam::TrackerViewStereo::draw(
     if (draw_output & DRAW_BEFORE_REFINE_RIGHT) drawGrid(right_out, params.matchingCellSize);
   }
 
+  // Draw 2D Projection from local map in Blue Color
   if ((draw_output & DRAW_BEFORE_REFINE_LEFT) || (draw_output & DRAW_AFTER_REFINE_LEFT))
     drawProjections(left_out, frame.GetFrameLeft().GetProjection(), ConstSharedPtrListIterable<sptam::Map::Point>::from( filtered_points ));
   if ((draw_output & DRAW_BEFORE_REFINE_RIGHT) || (draw_output & DRAW_AFTER_REFINE_RIGHT))
@@ -124,14 +125,56 @@ void sptam::TrackerViewStereo::draw(
       cv::drawKeypoints(right_out, keyPointsRight, right_out, COLOR_CYAN);
     }
   }
-
+  // Draw match features (red) and projections (yellow) with matching lines (green)
   if ((draw_output & DRAW_BEFORE_REFINE_STEREO) || (draw_output & DRAW_AFTER_REFINE_STEREO))
     drawMeasuredFeatures(frame, measurements, left_out, right_out);
   else if ((draw_output & DRAW_BEFORE_REFINE_LEFT) || (draw_output & DRAW_AFTER_REFINE_LEFT))
     drawMeasuredFeatures(frame, measurements, left_out, true);
   else if ((draw_output & DRAW_BEFORE_REFINE_RIGHT) || (draw_output & DRAW_AFTER_REFINE_RIGHT))
     drawMeasuredFeatures(frame, measurements, right_out, false);
-#endif
+
+}
+
+void sptam::TrackerViewStereo::draw_cross(const StereoFrame& frame, const sptam::Map::SharedMapPointList& filtered_points,
+                                          const std::list<Match>& measurements, const std::list<Match2D> match_measures,
+                                          const Parameters& params)
+{
+    /* check if no output is expected */
+    if (draw_output == DRAW_NONE)
+        return;
+
+    /* check if input images are valid */
+    if (image_left_.empty() || image_prev_left_.empty())
+        return;
+
+    cv::Mat left_out_1, left_out_2;
+
+    /* create stereo outputs if required */
+    stereoFrameContext_left = makeStereoWindow(image_prev_left_, image_left_, left_out_1, left_out_2, true);
+    /* create individual outputs if required */
+    makeColorCopy(image_prev_left_, left_out_1);
+    makeColorCopy(image_left_, left_out_2);
+
+    drawGrid(left_out_1, params.matchingCellSize);
+    drawGrid(left_out_2, params.matchingCellSize);
+
+    std::vector<cv::KeyPoint> keyPointsLeft, keyPointsRight;
+    cv::Mat descriptorsLeft, descriptorsRight;
+    std::vector<size_t> indexesLeft, indexesRight;
+
+    for ( const auto& match : match_measures )
+    {
+        if ((match.measurement1.GetType() == Measurement::LEFT) && (match.measurement2.GetType() == Measurement::LEFT) )
+        {
+            const cv::KeyPoint& featurePos_prev = match.measurement1.GetKeypoints()[0];
+            const cv::KeyPoint& featurePos_cur = match.measurement2.GetKeypoints()[0];
+            cv::Point2d feature_p(featurePos_prev.pt.x, featurePos_prev.pt.y);
+            cv::Point2d feature_c(featurePos_cur.pt.x, featurePos_cur.pt.y);
+            cv::line(stereoFrameContext_left, cv::Point(feature_p.x, feature_c.y),
+                    cv::Point(feature_c.x + image_left_.cols, feature_c.y), cv::Scalar(0, 255, 255));
+        }
+    }
+
 }
 
 cv::Vec3b sptam::TrackerViewStereo::featureColor(const Measurement& meas) const
