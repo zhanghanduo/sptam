@@ -90,7 +90,7 @@ std::list<std::pair<size_t, size_t> > Frame::FindMatches2D(const std::vector<cv:
     WriteToLog(" xx FindMatchesFrame-project 2d: ", t_project);
 #endif
 
-    return imageFeatures_.FindMatches(
+    return imageFeatures_.FindMatchesDense(
             points, descriptors, descriptorMatcher,
             matchingDistanceThreshold, matchingNeighborhoodThreshold
     );

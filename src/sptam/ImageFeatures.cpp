@@ -33,7 +33,7 @@
 
 #include "ImageFeatures.hpp"
 #include "utils/macros.hpp"
-
+#include "utils/gms_matcher.hpp"
 #if SHOW_PROFILING
 #include "utils/timer.h"
 #include "utils/log/Profiler.hpp"
@@ -112,6 +112,60 @@ std::list<std::pair<size_t, size_t> > ImageFeatures::FindMatches(
     t_match.stop();
     WriteToLog(" xx FindMatchesFrame-match: ", t_match);
   #endif
+
+  return measurements;
+}
+
+std::list<std::pair<size_t, size_t> > ImageFeatures::FindMatchesDense(
+        const std::vector<cv::Point2d>& featurePredictions,
+        const std::vector<cv::Mat>& descriptors,
+        const cv::DescriptorMatcher& descriptorMatcher,
+        const double matchingDistanceThreshold,
+        const size_t matchingNeighborhoodThreshold
+) const
+{
+  std::list<std::pair<size_t, size_t> > measurements;
+
+#if SHOW_PROFILING && PROFILE_INTERNAL
+  sptam::Timer t_match;
+  t_match.start();
+#endif
+
+  std::vector<cv::Point2d> points;
+  for (const auto& keypoint : keyPoints_) {
+    cv::Point2d point;
+    point.x = keypoint.pt.x;
+    point.y = keypoint.pt.y;
+    points.push_back(point);
+  }
+
+  forn (i, featurePredictions.size())
+  {
+    const cv::Point2d& point = featurePredictions[ i ];
+    cv::Mat descriptor = descriptors[ i ];
+
+    if (point.x < 0  or image_size_.width <= point.x or point.y < 0 or image_size_.height <= point.y)
+      continue;
+
+    int index = FindMatch(point, descriptor, descriptorMatcher, matchingDistanceThreshold, matchingNeighborhoodThreshold);
+
+    if ( index < 0 )
+      continue;
+
+    measurements.emplace_back(i, index);
+  }
+
+  std::cout << "Before gms " << measurements.size() << " matches." << std::endl;
+
+  std::vector<bool> vbInliers;
+  gms_matcher gms(featurePredictions, image_size_, points, image_size_, measurements);
+  int num_inliers = gms.GetInlierMask(vbInliers, false, false);
+  std::cout << "Get total " << num_inliers << " matches." << std::endl;
+
+#if SHOW_PROFILING && PROFILE_INTERNAL
+  t_match.stop();
+  WriteToLog(" xx FindMatchesFrame-match: ", t_match);
+#endif
 
   return measurements;
 }

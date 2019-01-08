@@ -64,6 +64,14 @@ class ImageFeatures
       const size_t matchingNeighborhoodThreshold
     ) const;
 
+    std::list<std::pair<size_t, size_t> > FindMatchesDense(
+            const std::vector<cv::Point2d>& featurePredictions,
+            const std::vector<cv::Mat>& descriptors,
+            const cv::DescriptorMatcher& descriptorMatcher,
+            const double matchingDistanceThreshold,
+            const size_t matchingNeighborhoodThreshold
+    ) const;
+
     inline void SetFeatures(ImageFeatures feature)
     {
         descriptors_ = feature.GetDescriptors();
@@ -114,5 +122,13 @@ class ImageFeatures
       const cv::DescriptorMatcher& descriptorMatcher,
       const double matchingDistanceThreshold,
       const size_t matchingNeighborhoodThreshold
+    ) const;
+
+    int FindMatchDense(
+            const cv::Point2d& prediction,
+            const cv::Mat& descriptor,
+            const cv::DescriptorMatcher& descriptorMatcher,
+            const double matchingDistanceThreshold,
+            const size_t matchingNeighborhoodThreshold
     ) const;
 };

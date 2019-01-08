@@ -170,6 +170,12 @@ void sptam::TrackerViewStereo::draw_cross(const StereoFrame& frame, const sptam:
             const cv::KeyPoint& featurePos_cur = match.measurement2.GetKeypoints()[0];
             cv::Point2d feature_p(featurePos_prev.pt.x, featurePos_prev.pt.y);
             cv::Point2d feature_c(featurePos_cur.pt.x, featurePos_cur.pt.y);
+
+            cv::line(left_out_1, cv::Point(feature_p.x, feature_p.y - 4), cv::Point(feature_p.x, feature_p.y + 4), cv::Scalar(0,0,255));
+            cv::line(left_out_1, cv::Point(feature_p.x + 4, feature_p.y), cv::Point(feature_p.x - 4, feature_p.y), cv::Scalar(0,0,255));
+            cv::line(left_out_2, cv::Point(feature_c.x, feature_c.y - 4), cv::Point(feature_c.x, feature_c.y + 4), cv::Scalar(0,0,255));
+            cv::line(left_out_2, cv::Point(feature_c.x + 4, feature_c.y), cv::Point(feature_c.x - 4, feature_c.y), cv::Scalar(0,0,255));
+
             cv::line(stereoFrameContext_left, cv::Point(feature_p.x, feature_c.y),
                     cv::Point(feature_c.x + image_left_.cols, feature_c.y), cv::Scalar(0, 255, 255));
         }
