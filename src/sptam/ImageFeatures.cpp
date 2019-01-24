@@ -147,7 +147,7 @@ std::list<std::pair<size_t, size_t> > ImageFeatures::FindMatchesDense(
     if (point.x < 0  or image_size_.width <= point.x or point.y < 0 or image_size_.height <= point.y)
       continue;
 
-    int index = FindMatch(point, descriptor, descriptorMatcher, matchingDistanceThreshold, matchingNeighborhoodThreshold);
+    int index = FindMatchDense(point, descriptor, descriptorMatcher, matchingDistanceThreshold, matchingNeighborhoodThreshold);
 
     if ( index < 0 )
       continue;
@@ -225,6 +225,63 @@ int ImageFeatures::FindMatch(
 //  }
 
   return matches[0].trainIdx;
+}
+
+int ImageFeatures::FindMatchDense(
+        const cv::Point2d& prediction,
+        const cv::Mat& descriptor,
+        const cv::DescriptorMatcher& descriptorMatcher,
+        const double matchingDistanceThreshold,
+        const size_t matchingNeighborhoodThreshold
+) const
+{
+    size_t radius = ceil( matchingNeighborhoodThreshold );
+
+    cv::Mat mask(cv::Mat::zeros(1, keyPoints_.size(), CV_8UC1));
+
+    for ( auto idx : hashed_indexes_.getNeighborhood(prediction.x, prediction.y, radius) )
+    {
+        // distance to query origin (in px)
+        double dx = prediction.x - keyPoints_[ idx ].pt.x;
+        double dy = prediction.y - keyPoints_[ idx ].pt.y;
+        double dst = sqrt(dx*dx + dy*dy);
+
+        // only consider if keypoints is unmatched and
+        // if coordinates are within radius (in cellSize)
+        if ( dst <= (matchingNeighborhoodThreshold) * hash_cell_size_)
+            mask.at<uchar>(0, idx) = true;
+    }
+
+    std::vector<cv::DMatch> matches;
+    descriptorMatcher.match(descriptor, descriptors_, matches, mask);
+
+    /*
+    std::vector< std::vector<cv::DMatch> > match_candidates;
+    descriptorMatcher.knnMatch( descriptor, descriptors_, match_candidates, 2, mask);
+
+    // was found a match?
+    if (match_candidates.empty())
+      return -1;
+
+    std::vector<cv::DMatch>& matches = match_candidates[0];
+    */
+
+    // was found a match?
+    if (matches.empty())
+        return -1;
+
+    // check if satisfy the matching distance threshold
+    if (matches[0].distance > matchingDistanceThreshold)
+        return -1;
+
+    // check if the second match is close
+//  if (matches.size() == 2) {
+//    const double ratio = 1.01; // TODO: check this parameter
+//    if(ratio * matches[0].distance >  matches[1].distance)
+//      return -1;
+//  }
+
+    return matches[0].trainIdx;
 }
 
 ImageFeatures::iPair ImageFeatures::GetHash(const cv::Point2d& key, const size_t cellSize) const

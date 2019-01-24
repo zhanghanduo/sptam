@@ -4,7 +4,7 @@
 ###############################################
 
 option(SHOW_POINT_CLOUD     "PCL Point Cloud visualization (only for stand-alone version)" OFF)
-option(SHOW_TRACKED_FRAMES  "OpenCV visualization of tracked frames." OFF)
+option(SHOW_TRACKED_FRAMES  "OpenCV visualization of tracked frames." ON)
 option(SHOW_PROFILING       "Profiling of each step." ON)
 option(USE_LOOPCLOSURE      "Use loopclosure." OFF)
 option(PARALLELIZE          "Parallelization using IntelTBB." ON)

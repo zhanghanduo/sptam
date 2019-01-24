@@ -155,8 +155,8 @@ void sptam::TrackerViewStereo::draw_cross(const StereoFrame& frame, const sptam:
     makeColorCopy(image_prev_left_, left_out_1);
     makeColorCopy(image_left_, left_out_2);
 
-    drawGrid(left_out_1, params.matchingCellSize);
-    drawGrid(left_out_2, params.matchingCellSize);
+//    drawGrid(left_out_1, params.matchingCellSize);
+//    drawGrid(left_out_2, params.matchingCellSize);
 
     std::vector<cv::KeyPoint> keyPointsLeft, keyPointsRight;
     cv::Mat descriptorsLeft, descriptorsRight;
@@ -164,8 +164,8 @@ void sptam::TrackerViewStereo::draw_cross(const StereoFrame& frame, const sptam:
 
     for ( const auto& match : match_measures )
     {
-        if ((match.measurement1.GetType() == Measurement::LEFT) && (match.measurement2.GetType() == Measurement::LEFT) )
-        {
+//        if ((match.measurement1.GetType() == Measurement::LEFT) && (match.measurement2.GetType() == Measurement::LEFT) )
+//        {
             const cv::KeyPoint& featurePos_prev = match.measurement1.GetKeypoints()[0];
             const cv::KeyPoint& featurePos_cur = match.measurement2.GetKeypoints()[0];
             cv::Point2d feature_p(featurePos_prev.pt.x, featurePos_prev.pt.y);
@@ -178,7 +178,7 @@ void sptam::TrackerViewStereo::draw_cross(const StereoFrame& frame, const sptam:
 
             cv::line(stereoFrameContext_left, cv::Point(feature_p.x, feature_c.y),
                     cv::Point(feature_c.x + image_left_.cols, feature_c.y), cv::Scalar(0, 255, 255));
-        }
+//        }
     }
 
 }

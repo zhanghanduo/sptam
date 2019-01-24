@@ -92,7 +92,7 @@ std::list<std::pair<size_t, size_t> > Frame::FindMatches2D(const std::vector<cv:
 
     return imageFeatures_.FindMatchesDense(
             points, descriptors, descriptorMatcher,
-            matchingDistanceThreshold, matchingNeighborhoodThreshold
+            matchingDistanceThreshold + 30, matchingNeighborhoodThreshold + 2
     );
 }
 

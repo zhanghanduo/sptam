@@ -218,7 +218,6 @@ void StereoFrame::FindMatches2D(const Measurement::Source source,
     }
     /* sequential find match */
     measurements_pair = frameLeft_.FindMatches2D(points, descriptors, descriptorMatcher, matchingDistanceThreshold, matchingNeighborhoodThreshold);
-//  measurementsRight = frameRight_.FindMatches(points, descriptors, descriptorMatcher, matchingDistanceThreshold, matchingNeighborhoodThreshold);
 
 #if SHOW_PROFILING && PROFILE_INTERNAL_MATCH
         t_1.stop();
@@ -237,7 +236,6 @@ void StereoFrame::FindMatches2D(const Measurement::Source source,
 
     // This is messy but efficient
     auto it_left = measurements_pair.begin();
-//    auto it_right = measurementsRight.begin();
 
     // iterate while there is something to be added to matches.
     while ( it_left != measurements_pair.end()  )
@@ -246,7 +244,7 @@ void StereoFrame::FindMatches2D(const Measurement::Source source,
         measurements.emplace_back(Measurement::LEFT, source, frameLeft_.GetFeatures().GetKeypoint( it_left->second ), frameLeft_.GetFeatures().GetDescriptor( it_left->second ));
         measurements_prev.emplace_back(Measurement::LEFT, source, frame_prev.GetKeypoint( it_left->first ),
                           frame_prev.GetDescriptor( it_left->first ));
-        frameLeft_.SetMatchedKeyPoint( it_left->second );
+//        frameLeft_.SetMatchedKeyPoint( it_left->second );
 
         matchedIndexes.push_back( it_left->first );
 

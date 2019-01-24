@@ -100,7 +100,7 @@ size_t PoseEstimator::centralPoseEstimation(const sptam::Map::SharedKeyFrame& re
   double ppal_point_y = left_calibration(1,2);
   double focal_length = left_calibration(0,0);
 
-  /* Bearing vectors of camera 3 (left target camera) towards the trianguled 3d points,
+  /* Bearing vectors of camera 3 (left target camera) towards the triangulated 3d points,
    * we must iterate the points vector in the same way that they were created to ensure corresponding index. */
   for(unsigned int i = 0; i < stereo_matches.size(); i++){
     Point2d kp3 = kps3[stereo_matches[i].m1vs3.trainIdx].pt;

@@ -48,7 +48,7 @@
 #endif
 
 
-#define GRID_EXTRACTOR 0
+#define GRID_EXTRACTOR 1
 
 FeatureExtractorThread::FeatureExtractorThread(const cv::Mat& image,
   cv::Ptr<cv::FeatureDetector> featureDetector,
@@ -57,10 +57,10 @@ FeatureExtractorThread::FeatureExtractorThread(const cv::Mat& image,
 )
   : image_( image )
   #if GRID_EXTRACTOR
-  , nFeatures_(300)
-  , grid_size(cv::Size(10, 10))
-  , featureDetector_(cv::FastFeatureDetector::create(20))
-  , featureDetector2_(cv::FastFeatureDetector::create(7))
+  , nFeatures_(1000)
+  , grid_size(cv::Size(15, 15))
+  , featureDetector_(featureDetector)
+  , featureDetector2_(cv::GFTTDetector::create(nFeatures_, 0.01, 4, 3, false, 0.04))
   #else
   , nFeatures_(nFeatures)
   , featureDetector_( featureDetector )
@@ -103,18 +103,18 @@ void FeatureExtractorThread::Extract()
   #endif
 }
 
-#define PARALLEL_GRID_EXTRACT 0
+#define PARALLEL_GRID_EXTRACT 1
 
-void FeatureExtractorThread::ExtractGrid(void)
+void FeatureExtractorThread::ExtractGrid()
 {
 #if PROFILE_INTERNAL
   sptam::Timer t_extract, t_compute;
   t_extract.start();
 #endif
 
-  /* TODO: check math */
   /* obtain cell size according to grid count and image size */
-  cv::Size cell_size(ceilf(image_.size().width / (float)grid_size.width), ceilf(image_.size().height / (float)grid_size.height));
+  cv::Size cell_size(static_cast<int>(ceilf(image_.size().width / (float)grid_size.width)),
+                     static_cast<int>(ceilf(image_.size().height / (float)grid_size.height)));
 
   std::list<cv::KeyPoint> keypoints_list;
 
@@ -124,7 +124,6 @@ void FeatureExtractorThread::ExtractGrid(void)
   {
     for (int yj = 0; yj < grid_size.height; yj++)
     {
-      /* TODO: check math */
       /* obtain rectangle corresponding to current cell */
       cv::Rect cell_rect(xi * cell_size.width, yj * cell_size.height, cell_size.width, cell_size.height);
       if (cell_rect.tl().x + cell_rect.width > image_.size().width) cell_rect.width = (image_.size().width - cell_rect.tl().x);
@@ -192,8 +191,7 @@ void FeatureExtractorThread::ExtractGrid(void)
   for (size_t i = 0; i < (size_t)grid_size.height; i++)
     for (size_t j = 0; j < (size_t)grid_size.width; j++)
       std::copy(keypoints_grid[i][j].begin(), keypoints_grid[i][j].end(), std::back_inserter(keypoints_list));
-  #else
-    #error "habilitame parallel code vieja"
+
   #endif
 #endif
 
@@ -244,6 +242,7 @@ class QuadTreeCell
         std::vector<std::shared_ptr<QuadTreeCell>> to_visit_vector;
         to_visit_vector.reserve(to_visit.size());
         std::copy(to_visit.begin(), to_visit.end(), std::back_inserter(to_visit_vector));
+        /* Sort in ascending order. */
         std::sort(to_visit_vector.begin(), to_visit_vector.end(), [](const auto& a, const auto& b) { return b->keypoints_.size() < a->keypoints_.size(); });
         to_visit.clear();
         std::copy(to_visit_vector.begin(), to_visit_vector.end(), std::back_inserter(to_visit));
@@ -257,7 +256,9 @@ class QuadTreeCell
         {
           const std::shared_ptr<QuadTreeCell>& c = *it;
 
-          /* this cell has more than one keypoint and is still large enough, thus create immediate children and distribute its points of this cell to them */
+          /* this cell has more than one keypoint and is still large enough, thus create
+           * immediate children and distribute its points of this cell to them */
+//          if (c->keypoints_.size() > 5 && c->rect_.area() > 500)
           if (c->keypoints_.size() > 1 && c->rect_.area() > 250)
           {
             c->distribute();
@@ -289,7 +290,7 @@ class QuadTreeCell
         }
       }
 
-      /* in case we exceeded the number of cells, make unvisited cells leafs */
+      /* in case we exceeded the number of cells, make unvisited cells leaves */
       std::copy(to_visit.begin(), to_visit.end(), std::back_inserter(final_cells));
 
 #if PROFILE_INTERNAL
@@ -299,7 +300,7 @@ class QuadTreeCell
 #endif
     }
 
-    void distribute(void)
+    void distribute()
     {
       /* build children, define corresponding rectangles */
       cv::Size2f half_size(rect_.width / 2, rect_.height / 2);
@@ -316,9 +317,8 @@ class QuadTreeCell
       /* distribute current cell points to children */
       for (const cv::KeyPoint& kp : keypoints_)
       {
-        for (int i = 0; i < 4; i++)
-        {
-          if (children_[i]->rect_.contains(kp.pt)) children_[i]->keypoints_.push_back(kp);
+        for (auto &i : children_) {
+          if (i->rect_.contains(kp.pt)) i->keypoints_.push_back(kp);
         }
       }
     }
@@ -330,7 +330,7 @@ class QuadTreeCell
     enum ChildPosition { TOP_LEFT = 0, TOP_RIGHT, BOT_LEFT, BOT_RIGHT };
 };
 
-#define DEBUG_QUADTREE 0
+#define DEBUG_QUADTREE 1
 
 void FeatureExtractorThread::quadtreeFilter(const std::list<cv::KeyPoint> &keypoints_in, std::vector<cv::KeyPoint>& keypoints_out)
 {
@@ -344,11 +344,10 @@ void FeatureExtractorThread::quadtreeFilter(const std::list<cv::KeyPoint> &keypo
 
 #if DEBUG_QUADTREE
   cv::Mat debug;
-  cv::cvtColor(image_, debug, CV_GRAY2BGR);
-
+//  cv::cvtColor(image_, debug, CV_GRAY2BGR);
   for (const auto& kp : keypoints_in)
   {
-    cv::circle(debug, kp.pt, 1, cv::Scalar(0,0,255));
+    cv::circle(image_, kp.pt, 1, cv::Scalar(0,0,255));
   }
 #endif
 
@@ -360,12 +359,12 @@ void FeatureExtractorThread::quadtreeFilter(const std::list<cv::KeyPoint> &keypo
     keypoints_out.push_back(*std::max_element(c->keypoints_.begin(), c->keypoints_.end(), [](const cv::KeyPoint& k1, const cv::KeyPoint& k2) { return k1.response < k2.response; }));
 
 #if DEBUG_QUADTREE
-    cv::rectangle(debug, c->rect_, cv::Scalar(255,0,0));
-    cv::circle(debug, keypoints_out.back().pt, 1, cv::Scalar(0,255,0));
+    cv::rectangle(image_, c->rect_, cv::Scalar(255,0,0));
+    cv::circle(image_, keypoints_out.back().pt, 1, cv::Scalar(0,255,0));
 #endif
   }
 
 #if DEBUG_QUADTREE
-  cv::imwrite("debug.png", debug);
+  cv::imwrite("debug.png", image_);
 #endif
 }

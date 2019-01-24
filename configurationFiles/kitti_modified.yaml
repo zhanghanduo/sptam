@@ -24,7 +24,7 @@ DescriptorMatcher:
 
 MatchingCellSize: 15
 MatchingNeighborhood: 2
-MatchingDistance: 30
+MatchingDistance: 25
 EpipolarDistance: 0
 FrustumNearPlaneDist: 0.1
 FrustumFarPlaneDist: 10000.0

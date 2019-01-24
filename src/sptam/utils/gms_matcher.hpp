@@ -387,7 +387,7 @@ int gms_matcher::run(int RotationType) {
 
 	mvbInlierMask.assign(mNumberMatches, false);
 
-	// Initialize Motion Statisctics
+	// Initialize Motion Statistics
 	mMotionStatistics = cv::Mat::zeros(mGridNumberLeft, mGridNumberRight, CV_32SC1);
 	mvMatchPairs.assign(mNumberMatches, pair<int, int>(0, 0));
 
